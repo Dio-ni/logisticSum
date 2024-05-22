@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Price Calculator</h2>
+    <div class="input-group">
+            <label for="mrp">МРП:</label>
+            <input type="number" value="3692" id="mrp" step="0.01">
+    </div>
+    <div class="input-group">
+        <label for="height">Высота:</label>
+        <input type="number" id="height" step="0.01">
+    </div>
+    <div class="input-group">
+        <label for="width">Ширина</label>
+        <input type="number" id="width" step="0.01">
+    </div>
+    <div class="input-group">
+        <label for="length">Длина:</label>
+        <input type="number" id="length" step="0.01">
+    </div>
+    <div class="input-group">
+        <label for="km">КМ:</label>
+        <input type="number" value="17" id="km" step="0.01">
+    </div>
+    <button onclick="calculatePrice()">Сумма:</button>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculatePrice() {
+        const height = parseFloat(document.getElementById('height').value);
+        const width = parseFloat(document.getElementById('width').value);
+        const length = parseFloat(document.getElementById('length').value);
+        const mrp=  parseFloat(document.getElementById('mrp').value);
+        const km=  parseFloat(document.getElementById('km').value);
+        
+        let heightRate = 0;
+        let widthRate = 0;
+        let lenRate = 0;
+
+        if (height > 4 && height <= 4.5) {
+            heightRate =  0.009 
+        } else if (height > 4.5 && height <= 5) {
+            heightRate =  0.018;
+        } else if (height > 5) {
+            heightRate =  0.036;
+        }
+
+        if (width > 2.55 && width <= 3) {
+            widthRate =0.009;
+        } else if (width >3 && width <= 3.75) {
+            widthRate = 0.019; // Assuming the same rate for iso bodies
+        }else if ( width > 3.75) {
+            widthRate =  0.038; // Assuming the same rate for iso bodies
+        }
+        
+
+        if(length>17){
+            lenRate= 0.04
+        }
+        console.log(heightRate+"-"+widthRate)
+        const price = (heightRate  + widthRate+lenRate)*mrp*km;
+
+        document.getElementById('result').innerText = 'Total Price: ' + price.toFixed(2) + ' units';
+    }
+</script>
+
+</body>
+</html>
