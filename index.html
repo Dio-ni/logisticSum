@@ -59,7 +59,7 @@
         <label for="km">КМ:</label>
         <input type="number" id="km" step="0.01">
     </div>
-    <button onclick="calculatePrice()">Сумма:</button>
+    <button onclick="calculatePrice()">Сумма</button>
     <div class="result" id="result"></div>
 </div>
 
@@ -98,7 +98,7 @@
         console.log(heightRate+"-"+widthRate)
         const price = (heightRate  + widthRate+lenRate)*mrp*km;
 
-        document.getElementById('result').innerText = 'Total Price: ' + price.toFixed(2) + ' units';
+        document.getElementById('result').innerText = 'Итоговая Сумма: ' + price.toFixed(2) ;
     }
 </script>
 
